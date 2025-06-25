@@ -218,7 +218,7 @@ elif aba == "Resumo Funil":
     # --- Indicações ---
     df_indicacao = carregar_dados(url_indicacoes)
     df_indicacao["Indicação"] = df_indicacao["Indicação"].str.strip().str.capitalize()
-    indic_total = df_indicacao["Indicação"].value_counts().get("Sim","Vão indicar, 0)
+    indic_total = df_indicacao["Indicação"].value_counts().get("Sim","Vão indicar", 0)
 
     indic_sim = df_indicacao["Indicação"].value_counts().get("Sim", 0)
     indic_nao = df_indicacao["Indicação"].value_counts().get("Não", 0)
