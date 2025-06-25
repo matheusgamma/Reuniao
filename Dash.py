@@ -203,6 +203,8 @@ elif aba == "Resumo Funil":
 
     url_lista = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Lista%20de%20indica%C3%A7%C3%B5es"
     df_lista = carregar_dados(url_lista)
+    st.write("Colunas encontradas em df_lista:", df_lista.columns.tolist())
+
 
 
 
