@@ -255,7 +255,7 @@ elif aba == "Resumo Funil":
         indic_total,
         clientes_ativos,
         indic_nao,
-        indic_vao
+        indic_vao,
         leads_gerados
     ]
 
