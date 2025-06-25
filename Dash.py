@@ -219,6 +219,8 @@ elif aba == "Resumo Funil":
     df_indicacao = carregar_dados(url_indicacoes)
     df_indicacao["Indicação"] = df_indicacao["Indicação"].str.strip().str.capitalize()
     indic_total = df_indicacao[df_indicacao["Indicação"].isin(["Sim", "Vão indicar"])]["Cliente"].nunique()
+    leads_gerados = df_lista["Quantidade de Indicação"].sum()
+
 
 
     indic_sim = df_indicacao["Indicação"].value_counts().get("Sim", 0)
@@ -239,6 +241,7 @@ elif aba == "Resumo Funil":
         "Clientes que indicaram",
         "Indicações - Não",
         "Indicações - Vão indicar"
+        "Leads gerados - Total"
     ]
 
     values = [
@@ -253,6 +256,7 @@ elif aba == "Resumo Funil":
         clientes_ativos,
         indic_nao,
         indic_vao
+        leads_gerados
     ]
 
     fig = go.Figure(go.Funnel(
