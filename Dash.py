@@ -199,6 +199,8 @@ elif aba == "Contagem de Indicação":
 elif aba == "Resumo Funil":
     st.title("📊 Resumo Funil - Visão Geral")
 
+    sheet_id = "1CBZ6G9-LCMMvTi-wWKkaaVaGLb7MyGns"
+
     url_lista = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Lista%20de%20indica%C3%A7%C3%B5es"
     df_lista = carregar_dados(url_lista)
 
