@@ -199,11 +199,6 @@ elif aba == "Contagem de Indicação":
 elif aba == "Resumo Funil":
     st.title("📊 Resumo Funil - Visão Geral")
 
-    sheet_id = "1CBZ6G9-LCMMvTi-wWKkaaVaGLb7MyGns"
-
-    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTf6b4hO-tbFrijCBumyiZK4XOEVqRgk6DqqhpQcSQIn0-v46pLgwMIA8cLdpn4Rg/pub?gid=1684096855&single=true&output=csv"
-    df_lista = carregar_dados(url_lista)
-
     # --- Contato ---
     df_contato = carregar_dados(url_contato)
     df_contato["Primeiro Contato"] = df_contato["Primeiro Contato"].fillna("Vazio")
@@ -228,7 +223,6 @@ elif aba == "Resumo Funil":
     indic_sim = df_indicacao["Indicação"].value_counts().get("Sim", 0)
     indic_nao = df_indicacao["Indicação"].value_counts().get("Não", 0)
     indic_vao = df_indicacao["Indicação"].value_counts().get("Vão indicar", 0)
-    leads_gerados = df_lista["Quantidade de Indicação"].sum()
 
     clientes_ativos = df_indicacao[df_indicacao["Indicação"] == "Sim"]["Cliente"].nunique()
 
@@ -244,7 +238,6 @@ elif aba == "Resumo Funil":
         "Clientes que indicaram",
         "Indicações - Não",
         "Indicações - Vão indicar"
-        "Leads gerados - Total"
     ]
 
     values = [
@@ -259,7 +252,6 @@ elif aba == "Resumo Funil":
         clientes_ativos,
         indic_nao,
         indic_vao,
-        leads_gerados
     ]
 
     fig = go.Figure(go.Funnel(
