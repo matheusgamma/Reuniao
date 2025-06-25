@@ -199,6 +199,11 @@ elif aba == "Contagem de Indicação":
 elif aba == "Resumo Funil":
     st.title("📊 Resumo Funil - Visão Geral")
 
+    url_lista = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Lista%20de%20indica%C3%A7%C3%B5es"
+    df_lista = carregar_dados(url_lista)
+
+
+
     # --- Contato ---
     df_contato = carregar_dados(url_contato)
     df_contato["Primeiro Contato"] = df_contato["Primeiro Contato"].fillna("Vazio")
@@ -226,7 +231,7 @@ elif aba == "Resumo Funil":
     indic_sim = df_indicacao["Indicação"].value_counts().get("Sim", 0)
     indic_nao = df_indicacao["Indicação"].value_counts().get("Não", 0)
     indic_vao = df_indicacao["Indicação"].value_counts().get("Vão indicar", 0)
-    leads_gerados = df_indicacao["Quantidade de Indicação"].sum()
+    leads_gerados = df_lista["Quantidade de Indicação"].sum()
 
     clientes_ativos = df_indicacao[df_indicacao["Indicação"] == "Sim"]["Cliente"].nunique()
 
