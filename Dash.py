@@ -219,13 +219,14 @@ elif aba == "Resumo Funil":
     df_indicacao = carregar_dados(url_indicacoes)
     df_indicacao["Indicação"] = df_indicacao["Indicação"].str.strip().str.capitalize()
     indic_total = df_indicacao[df_indicacao["Indicação"].isin(["Sim", "Vão indicar"])]["Cliente"].nunique()
-    leads_gerados = df_lista["Quantidade de Indicação"].sum()
+    
 
 
 
     indic_sim = df_indicacao["Indicação"].value_counts().get("Sim", 0)
     indic_nao = df_indicacao["Indicação"].value_counts().get("Não", 0)
     indic_vao = df_indicacao["Indicação"].value_counts().get("Vão indicar", 0)
+    leads_gerados = df_lista["Quantidade de Indicação"].sum()
 
     clientes_ativos = df_indicacao[df_indicacao["Indicação"] == "Sim"]["Cliente"].nunique()
 
