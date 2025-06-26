@@ -215,17 +215,34 @@ elif aba == "Resumo Funil":
     reuni_sim = df_reuniao["Aconteceu"].value_counts().get("Sim", 0)
     reuni_nao = df_reuniao["Aconteceu"].value_counts().get("Não", 0)
 
-    # --- Indicações ---
+    # --- Indicações (Reuniões) ---
     df_indicacao = carregar_dados(url_indicacoes)
     df_indicacao["Indicação"] = df_indicacao["Indicação"].str.strip().str.capitalize()
     indic_total = df_indicacao[df_indicacao["Indicação"].isin(["Sim", "Vão indicar"])]["Cliente"].nunique()
-
     indic_sim = df_indicacao["Indicação"].value_counts().get("Sim", 0)
     indic_nao = df_indicacao["Indicação"].value_counts().get("Não", 0)
     indic_vao = df_indicacao["Indicação"].value_counts().get("Vão indicar", 0)
-
     clientes_ativos = df_indicacao[df_indicacao["Indicação"] == "Sim"]["Cliente"].nunique()
 
+    # --- Leads Gerados ---
+    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTf6b4hO-tbFrijCBumyiZK4XOEVqRgk6DqqhpQcSQIn0-v46pLgwMIA8cLdpn4Rg/pub?gid=1684096855&single=true&output=csv"
+    df_lista = carregar_dados(url_lista)
+    df_lista.columns = df_lista.columns.str.strip()
+
+    if "Quantidade de indicação" in df_lista.columns and "CLIENTE" in df_lista.columns:
+        df_lista = df_lista[df_lista["CLIENTE"].notna()]
+        df_lista["Quantidade de indicação"] = (
+            df_lista["Quantidade de indicação"]
+            .astype(str)
+            .str.replace(",", ".")
+            .str.strip()
+        )
+        df_lista["Quantidade de indicação"] = pd.to_numeric(df_lista["Quantidade de indicação"], errors="coerce").fillna(0)
+        leads_gerados = int(df_lista["Quantidade de indicação"].sum())
+    else:
+        leads_gerados = 0
+
+    # --- Funnel Data ---
     labels = [
         "Contato - Total",
         "Contato - Concluído",
@@ -237,7 +254,8 @@ elif aba == "Resumo Funil":
         "Indicações - Total",
         "Clientes que indicaram",
         "Indicações - Não",
-        "Indicações - Vão indicar"
+        "Indicações - Vão indicar",
+        "Leads gerados"
     ]
 
     values = [
@@ -252,6 +270,7 @@ elif aba == "Resumo Funil":
         clientes_ativos,
         indic_nao,
         indic_vao,
+        leads_gerados
     ]
 
     fig = go.Figure(go.Funnel(
@@ -259,7 +278,7 @@ elif aba == "Resumo Funil":
         x=values,
         textinfo="value+percent initial",
         textposition="inside",
-        textfont={"size": 36, "color": "black"},
+        textfont={"size": 32, "color": "black"},
         marker={"color": ["#636EFA", "#00CC96", "#EF553B", "#AB63FA",
                           "#FFA15A", "#19D3F3", "#FF6692",
                           "#B6E880", "#FF97FF", "#FECB52", "#FF7F50", "#66CDAA"]}
@@ -267,12 +286,13 @@ elif aba == "Resumo Funil":
 
     fig.update_layout(
         margin=dict(l=100, r=100, t=100, b=100),
-        width=800,
-        height=600,
+        width=900,
+        height=700,
         font=dict(size=20)
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
 
 
 
