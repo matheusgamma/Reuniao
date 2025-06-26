@@ -213,7 +213,10 @@ elif aba == "Resumo Funil":
     df_reuniao["Aconteceu"] = df_reuniao["Aconteceu"].str.strip().str.capitalize()
     reuni_total = len(df_reuniao)
     reuni_sim = df_reuniao["Aconteceu"].value_counts().get("Sim", 0)
-    reuni_nao = df_reuniao["Aconteceu"].value_counts().get("Não", 0)
+    reuniao_counts = df_reuniao["Aconteceu"].value_counts()
+    reuni_nao = reuniao_counts.get("Não", 0)
+    nao_topou = reuniao_counts.get("Não topou reunião", 0)
+
 
     # --- Indicações (Reuniões) ---
     df_indicacao = carregar_dados(url_indicacoes)
@@ -251,6 +254,7 @@ elif aba == "Resumo Funil":
         "Reuniões - Total",
         "Reuniões - Aconteceram (Sim)",
         "Reuniões - Não aconteceram",
+        "Clientes que não toparam reunião"
         "Indicações - Total",
         "Clientes que indicaram",
         "Indicações - Não",
@@ -266,6 +270,7 @@ elif aba == "Resumo Funil":
         reuni_total,
         reuni_sim,
         reuni_nao,
+        nao_topou
         indic_total,
         clientes_ativos,
         indic_nao,
