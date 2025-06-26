@@ -279,15 +279,21 @@ elif aba == "Resumo Funil":
     ]
 
     fig = go.Figure(go.Funnel(
-        y=labels,
-        x=values,
-        textinfo="value+percent initial",
-        textposition="inside",
-        textfont={"size": 32, "color": "black"},
-        marker={"color": ["#636EFA", "#00CC96", "#EF553B", "#AB63FA",
-                          "#FFA15A", "#19D3F3", "#FF6692",
-                          "#B6E880", "#FF97FF", "#FECB52", "#FF7F50", "#66CDAA"]}
-    ))
+    y=labels,
+    x=values,
+    textinfo="value+percent initial",
+    textposition="inside",
+    textfont=dict(
+        size=[28] * (len(labels) - 1) + [36],  # aumenta tamanho da última
+        color=["black"] * (len(labels) - 1) + ["white"]  # última branca se fundo escuro
+    ),
+    marker=dict(
+        color=["#636EFA", "#00CC96", "#EF553B", "#AB63FA",
+               "#FFA15A", "#19D3F3", "#FF6692",
+               "#B6E880", "#FF97FF", "#FECB52", "#FF7F50", "#66CDAA", "#2E91E5"]
+    )
+))
+
 
     fig.update_layout(
         margin=dict(l=100, r=100, t=100, b=100),
