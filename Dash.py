@@ -270,7 +270,7 @@ elif aba == "Resumo Funil":
         reuni_total,
         reuni_sim,
         reuni_nao,
-        nao_topou
+        nao_topou,
         indic_total,
         clientes_ativos,
         indic_nao,
