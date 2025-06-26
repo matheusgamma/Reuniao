@@ -254,7 +254,7 @@ elif aba == "Resumo Funil":
         "Reuniões - Total",
         "Reuniões - Aconteceram (Sim)",
         "Reuniões - Não aconteceram",
-        "Clientes que não toparam reunião"
+        "Clientes que não toparam reunião",
         "Indicações - Total",
         "Clientes que indicaram",
         "Indicações - Não",
