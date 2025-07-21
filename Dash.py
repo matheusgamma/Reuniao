@@ -4,7 +4,7 @@ import urllib.parse
 import plotly.graph_objects as go
 
 # --- URLs das abas ---
-sheet_id = "1CBZ6G9-LCMMvTi-wWKkaaVaGLb7MyGns"
+sheet_id = "1eVmdyj8Gue7vr10cybJr1Uz0C_Xr6XIw"
 
 url_contato = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Controle%20de%20contato"
 url_reuniao = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Reuni%C3%B5es%20marcadas"
