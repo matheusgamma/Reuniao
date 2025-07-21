@@ -153,7 +153,7 @@ elif aba == "Contagem de Indicação":
     # --- Lista de indicações feitas pelos clientes ---
     st.markdown("---")
 
-    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTf6b4hO-tbFrijCBumyiZK4XOEVqRgk6DqqhpQcSQIn0-v46pLgwMIA8cLdpn4Rg/pub?gid=1684096855&single=true&output=csv"
+    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pubhtml?gid=779895520&single=true"
 
     # Lê os dados da aba publicada
     df_lista = pd.read_csv(url_lista, encoding="utf-8")
@@ -228,7 +228,7 @@ elif aba == "Resumo Funil":
     clientes_ativos = df_indicacao[df_indicacao["Indicação"] == "Sim"]["Cliente"].nunique()
 
     # --- Leads Gerados ---
-    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTf6b4hO-tbFrijCBumyiZK4XOEVqRgk6DqqhpQcSQIn0-v46pLgwMIA8cLdpn4Rg/pub?gid=1684096855&single=true&output=csv"
+    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pubhtml?gid=779895520&single=true"
     df_lista = carregar_dados(url_lista)
     df_lista.columns = df_lista.columns.str.strip()
 
