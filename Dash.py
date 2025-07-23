@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 sheet_id = "1eVmdyj8Gue7vr10cybJr1Uz0C_Xr6XIw"
 
 url_contato = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Controle%20de%20contato"
-url_reuniao = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Reuni%C3%B5es%20marcadas"
+url_reuniao = url_reuniao = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pub?gid=73898366&single=true&output=csv"
 url_indicacoes = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Reuni%C3%B5es%20marcadas"
 
 # --- Sidebar ---
