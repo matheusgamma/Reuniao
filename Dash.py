@@ -154,7 +154,7 @@ elif aba == "Contagem de Indicação":
     # --- Lista de indicações feitas pelos clientes ---
     st.markdown("---")
 
-    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pubhtml?gid=779895520&single=true"
+    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pub?gid=779895520&single=true&output=csv"
 
     # Lê os dados da aba publicada
     df_lista = pd.read_csv(url_lista, encoding="utf-8")
