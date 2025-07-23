@@ -218,8 +218,7 @@ elif aba == "Resumo Funil":
     reuni_nao = reuniao_counts.get("Não", 0)
     nao_topou = reuniao_counts.get("Não topou reunião", 0)
 
-
-    # --- Indicações (Reuniões) ---
+    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pub?gid=779895520&single=true&output=csv"
     
     # --- Indicações (Lista de indicações) ---
     df_indicacao = carregar_dados(url_lista)
