@@ -217,52 +217,36 @@ elif aba == "Resumo Funil":
     reuniao_counts = df_reuniao["Aconteceu"].value_counts()
     reuni_nao = reuniao_counts.get("Não", 0)
     nao_topou = reuniao_counts.get("Não topou reunião", 0)
-
-    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pub?gid=779895520&single=true&output=csv"
     
     # --- Indicações (Lista de indicações) ---
-    df_indicacao = carregar_dados(url_lista)
-    df_indicacao.columns = df_indicacao.columns.str.strip().str.upper()
-    
-    # Padroniza os valores da coluna INDICACAO
-    df_indicacao["INDICACAO"] = df_indicacao["INDICACAO"].astype(str).str.strip().str.capitalize()
-    
-    indic_sim = df_indicacao["INDICACAO"].value_counts().get("Sim", 0)
-    indic_nao = df_indicacao["INDICACAO"].value_counts().get("Não", 0)
-    indic_vao = df_indicacao["INDICACAO"].value_counts().get("Vão indicar", 0)
-    
-    clientes_ativos = df_indicacao[df_indicacao["INDICACAO"] == "Sim"]["CLIENTE"].nunique()
-    indic_total = df_indicacao[df_indicacao["INDICACAO"].isin(["Sim", "Vão indicar"])]["CLIENTE"].nunique()
+    # --- Indicações (Reuniões) ---
+    df_indicacao = carregar_dados(url_indicacoes)
+    df_indicacao["Indicação"] = df_indicacao["Indicação"].str.strip().str.capitalize()
+    indic_total = df_indicacao[df_indicacao["Indicação"].isin(["Sim", "Vão indicar"])]["Cliente"].nunique()
+    indic_sim = df_indicacao["Indicação"].value_counts().get("Sim", 0)
+    indic_nao = df_indicacao["Indicação"].value_counts().get("Não", 0)
+    indic_vao = df_indicacao["Indicação"].value_counts().get("Vão indicar", 0)
+    clientes_ativos = df_indicacao[df_indicacao["Indicação"] == "Sim"]["Cliente"].nunique()
 
 
-        # --- Indicações e Leads Gerados (Lista de indicações) ---
+
+        # --- Leads Gerados ---
     url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pub?gid=779895520&single=true&output=csv"
-    df_indicacao = carregar_dados(url_lista)
-    df_indicacao.columns = df_indicacao.columns.str.strip().str.upper()
-    
-    if "CLIENTE" in df_indicacao.columns and "INDICACAO" in df_indicacao.columns and "QUANTIDADE DE INDICAÇÃO" in df_indicacao.columns:
-        # Limpa e padroniza
-        df_indicacao = df_indicacao[df_indicacao["CLIENTE"].notna()]
-        df_indicacao["INDICACAO"] = df_indicacao["INDICACAO"].astype(str).str.strip().str.capitalize()
-    
-        indic_sim = df_indicacao["INDICACAO"].value_counts().get("Sim", 0)
-        indic_nao = df_indicacao["INDICACAO"].value_counts().get("Não", 0)
-        indic_vao = df_indicacao["INDICACAO"].value_counts().get("Vão indicar", 0)
-    
-        clientes_ativos = df_indicacao[df_indicacao["INDICACAO"] == "Sim"]["CLIENTE"].nunique()
-        indic_total = df_indicacao[df_indicacao["INDICACAO"].isin(["Sim", "Vão indicar"])]["CLIENTE"].nunique()
-    
-        # Trata a coluna de quantidade de indicação
-        df_indicacao["QUANTIDADE DE INDICAÇÃO"] = (
-            df_indicacao["QUANTIDADE DE INDICAÇÃO"]
+    df_lista = carregar_dados(url_lista)
+    df_lista.columns = df_lista.columns.str.strip()
+
+    if "Quantidade de indicação" in df_lista.columns and "CLIENTE" in df_lista.columns:
+        df_lista = df_lista[df_lista["CLIENTE"].notna()]
+        df_lista["Quantidade de indicação"] = (
+            df_lista["Quantidade de indicação"]
             .astype(str)
             .str.replace(",", ".")
             .str.strip()
         )
-        df_indicacao["QUANTIDADE DE INDICAÇÃO"] = pd.to_numeric(df_indicacao["QUANTIDADE DE INDICAÇÃO"], errors="coerce").fillna(0)
-        leads_gerados = int(df_indicacao["QUANTIDADE DE INDICAÇÃO"].sum())
+        df_lista["Quantidade de indicação"] = pd.to_numeric(df_lista["Quantidade de indicação"], errors="coerce").fillna(0)
+        leads_gerados = int(df_lista["Quantidade de indicação"].sum())
     else:
-        indic_sim = indic_nao = indic_vao = clientes_ativos = indic_total = leads_gerados = 0
+        leads_gerados = 0
 
 
     # --- Funnel Data ---
