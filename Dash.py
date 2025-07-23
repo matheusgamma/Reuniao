@@ -230,7 +230,7 @@ elif aba == "Resumo Funil":
     clientes_ativos = df_indicacao[df_indicacao["Indicação"] == "Sim"]["Cliente"].nunique()
 
     # --- Leads Gerados ---
-    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pubhtml?gid=779895520&single=true"
+    url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pub?gid=779895520&single=true&output=csv"
     df_lista = carregar_dados(url_lista)
     df_lista.columns = df_lista.columns.str.strip()
 
