@@ -8,7 +8,7 @@ sheet_id = "1eVmdyj8Gue7vr10cybJr1Uz0C_Xr6XIw"
 
 url_contato = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet=Controle%20de%20contato"
 url_reuniao = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pub?gid=73898366&single=true&output=csv"
-url_indicacoes = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pub?gid=73898366&single=true&output=csv"
+url_indicacoes = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pub?gid=779895520&single=true&output=csv"
 
 
 # --- Sidebar ---
