@@ -205,7 +205,7 @@ elif aba == "Resumo Funil":
     df_contato["Primeiro Contato"] = df_contato["Primeiro Contato"].fillna("Vazio")
     contato_counts = df_contato["Primeiro Contato"].value_counts()
     contato_total = len(df_contato)
-    contato_concluido = contato_counts.get("Concluido", 0)
+    contato_concluido = contato_counts.get("concluído", 0)
     contato_caixa = contato_counts.get("Caixa postal", 0)
     contato_vazio = contato_counts.get("Vazio", 0)
 
@@ -250,7 +250,7 @@ elif aba == "Resumo Funil":
     # --- Funnel Data ---
     labels = [
         "Contato - Total",
-        "Contato - Concluído",
+        "Contato - concluído",
         "Contato - Caixa postal",
         "Contato - Vazio",
         "Reuniões - Total",
