@@ -223,12 +223,12 @@ elif aba == "Resumo Funil":
     
     df_indicacao = carregar_dados(url_indicacoes)
     st.write("Colunas:", df_indicacao.columns.tolist())
-    df_indicacao["Indicacao"] = df_indicacao["Indicacao"].str.strip().str.capitalize()
-    indic_total = df_indicacao[df_indicacao["Indicacao"].isin(["Sim", "Vão indicar"])]["Cliente"].nunique()
-    indic_sim = df_indicacao["Indicacao"].value_counts().get("Sim", 0)
-    indic_nao = df_indicacao["Indicacao"].value_counts().get("Não", 0)
-    indic_vao = df_indicacao["Indicacao"].value_counts().get("Vão indicar", 0)
-    clientes_ativos = df_indicacao[df_indicacao["Indicacao"] == "Sim"]["Cliente"].nunique()
+    df_indicacao["Indicação"] = df_indicacao["Indicação"].str.strip().str.capitalize()
+    indic_total = df_indicacao[df_indicacao["Indicação"].isin(["Sim", "Vão indicar"])]["Cliente"].nunique()
+    indic_sim = df_indicacao["Indicação"].value_counts().get("Sim", 0)
+    indic_nao = df_indicacao["Indicação"].value_counts().get("Não", 0)
+    indic_vao = df_indicacao["Indicação"].value_counts().get("Vão indicar", 0)
+    clientes_ativos = df_indicacao[df_indicacao["Indicação"] == "Sim"]["Cliente"].nunique()
 
     # --- Leads Gerados ---
     url_lista = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRMIUAGf8uZFTGiLwsrlZ4cJ0tnkfOZ0x5ChwankP5SosC3waREpY4h45xibiFrvw/pubhtml?gid=779895520&single=true"
